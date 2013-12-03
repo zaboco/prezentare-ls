@@ -1,0 +1,14 @@
+{
+  "name": "paper-demo",
+  "version": "0.0.1",
+  "description": "paper module",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-watch": "~0.5.3"
+  },
+  "author": "Bogdan Zaharia",
+  "license": "MIT",
+  "readmeFilename": "README.md"
+}

@@ -1,0 +1,653 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Prezentare LiveScript</title>
+
+    <link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/print/pdf.css" type="text/css" media="print">
+		<link rel="stylesheet" href="css/theme/beige.css" id="theme">
+
+		<link href='http://fonts.googleapis.com/css?family=Oswald:400,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+
+    <!-- default, ascetic, idea, github, monokai_sublime (dark) -->
+		<link rel="stylesheet" href="lib/css/idea.css">
+    <style type="text/css">
+      span.surprise {
+        font-weight:bold; color:#AC3806;
+      }
+      h2 {
+        margin-bottom: 40px;
+      }
+      p.desc {
+        text-align: left;
+        margin-left: 45px;
+      }
+    </style>
+	</head>
+
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<h1>LiveScript</h1>
+					<p><q>"un limbaj care compilează în JavaScript"</q></p>
+					<a href="http://livescript.net">livescript.net</a>
+				</section>
+				<section>
+					<h2>inspirație</h2>
+					<img style="margin-right: 20px" src="https://drupal.org/files/images/coffeescript.png"/>
+					<img src="http://bilfp.wikidot.com/local--files/haskell/haskell-logo.png"/>
+					<p class="fragment"><em>...și ceva în plus</em></p>
+				</section>
+				<section>
+          <section>
+            <h2>sintaxă simplificată</h2>
+          </section>
+          <section data-transition="none">
+            <h4>cod original</h4>
+            <pre><code data-trim>
+if (x > min(1, 3)) {
+  s = sum(1, 2);
+  obj = {x: 1, y: 2};
+  list = [1, 2, 3]
+}
+            </code></pre>
+          </section>
+          <section data-transition="none">
+            <h4>fără paranteze*</h4>
+            <pre><code data-trim>
+if x > min 1, 3
+  s = sum 1, 2
+  obj = x: 1, y: 2
+  list = [1, 2, 3]
+# *indentarea contează  
+            </code></pre>
+          </section>
+          <section data-transition="none">
+            <h4>fără virgule</h4>
+            <pre><code data-trim>
+if x > min 1 3
+  s = sum 1 2
+  obj = x: 1 y: 2
+  list = [1 2 3]
+# 
+            </code></pre>
+          </section>
+          <section><h2>dar...</h2></section>
+          <section data-transition="none">
+            <h4>...cu excepții, bineînțeles</h4>
+            <pre><code data-trim>
+sum (min a, b), (max 1 3)
+move-to {
+  x: some-really-long-def!
+  y: 0
+}
+            </code></pre>
+          </section>
+				</section>
+        <section>
+          <section><h2>stringuri</h2></section>
+          <section>
+            <h4>varianta scurtă</h4>
+            <div class="fragment" data-fragment-index="1">
+              <div class="fragment semi-fade-out" data-fragment-index="2">
+                <p class="desc">cuvânt*</p>
+                <pre><code data-trim>
+id = \no_white_space # 'no_white_space'
+                </code></pre>
+                <p class="desc"><small>*fără spații</small></p>
+              </div>
+            </div>
+            <div class="fragment" data-fragment-index="2">
+              <p class="desc">listă de cuvinte*</p>
+              <pre><code data-trim>
+words = <[a-word another_word]> # ['a-word', 'another_word']
+              </code></pre>
+              <p class="desc"><small>*tot fără spații</small></p>
+            </div>
+          </section>
+          <section>
+            <h4>interpolare</h4>
+            <div class="fragment" data-fragment-index="1">
+              <div class="fragment semi-fade-out" data-fragment-index="2">
+                <pre><code data-trim>
+x = 0
+interpolated = "x is #x" # 'x is 0'
+# trebuie folosite "ghilimele"
+                </code></pre>
+              </div>
+            </div>
+            <div class="fragment" data-fragment-index="2">
+              <div class="fragment semi-fade-out" data-fragment-index="3">
+                <pre><code data-trim>
+normal = 'just #x' # 'just #x'
+# ce este între '' nu se interpolează
+                </code></pre>
+              </div>
+            </div>
+            <div class="fragment" data-fragment-index="3">
+              <pre><code data-trim>
+complex = "double of x is #{x * 2}"
+# se folosesc {} pentru #{cod complex}
+              </code></pre>
+            </div>
+          </section>
+          <section>
+            <h4>operatori</h4>
+            <div class="fragment" data-fragment-index="1">
+              <div class="fragment semi-fade-out" data-fragment-index="2">
+                <p class="desc">repetiție</p>
+                <pre><code data-trim>
+\x * 3 # 'xxx'
+                </code></pre>
+              </div>
+            </div>
+            <div class="fragment" data-fragment-index="2">
+              <div class="fragment semi-fade-out" data-fragment-index="3">
+                <p class="desc">eliminare</p>
+                <pre><code data-trim>
+\axbxc - \x # 'abxc'
+# practic face 'axbxc'.replace \x ''
+                </code></pre>
+              </div>
+            </div>
+            <div class="fragment" data-fragment-index="3">
+              <div class="fragment semi-fade-out" data-fragment-index="4">
+                <pre><code data-trim>
+\axbxc - /x/g # 'abc'
+# merge și cu RegExp
+                </code></pre>
+              </div>
+            </div>
+            <div class="fragment" data-fragment-index="4">
+              <p class="desc">împărțire</p>
+              <pre><code data-trim>
+\a-b-c / '-' # ['a', 'b', 'c']
+'a  b-c_d' / /[ -_]*/ # ['a', 'b', 'c', 'd']
+              </code></pre>
+            </div>
+          </section>
+        </section>
+
+        <section>
+          <section><h2>liste</h2></section>
+          <section>
+            <h4>prescurtări</h4>
+            <div class="fragment" data-fragment-index="1">
+              <div class="fragment semi-fade-out" data-fragment-index="2">
+                <p class="desc">intervale</p>
+                <pre><code data-trim>
+numbers = [1 to 3] # [1 2 3]
+numbers = [1 til 3] # [1 2]
+                </code></pre>
+              </div>
+            </div>
+            <div class="fragment" data-fragment-index="2">
+              <p class="desc">comprehension*</p>
+              <pre><code data-trim>
+list = [x * 2 for x from 1 to 3 when x % 2 is 1] # [2 6]
+[x - 1 for x in list] # [1 5]
+              </code></pre>
+              <p class="desc"><small>*nu știu cum se traduce în românește</small></p>
+            </div>
+          </section>
+          <section>
+            <h4>operatori</h4>
+            <div class="fragment" data-fragment-index="1">
+              <div class="fragment semi-fade-out" data-fragment-index="2">
+                <p class="desc">repetiție</p>
+                <pre><code data-trim>
+[1] * 3 # [1 1 1]
+                </code></pre>
+              </div>
+            </div>
+            <div class="fragment" data-fragment-index="2">
+              <div class="fragment semi-fade-out" data-fragment-index="3">
+                <p class="desc">alăturare</p>
+                <pre><code data-trim>
+<[a b c]> * '-' # \a-b-c
+                </code></pre>
+              </div>
+            </div>
+            <div class="fragment" data-fragment-index="3">
+              <p class="desc">concatenare</p>
+              <pre><code data-trim>
+[1 2] ++ [3 4] # [1 2 3 4]
+              </code></pre>
+            </div>
+          </section>
+          <section>
+            <h4>destructurare</h4>
+            <div class="fragment" data-fragment-index="1">
+              <div class="fragment semi-fade-out" data-fragment-index="2">
+                <p class="desc">simplă</p>
+                <pre><code data-trim>
+[a b] = [1 2] # a = 1; b = 2
+[result error] = some-function()
+                </code></pre>
+              </div>
+            </div>
+            <div class="fragment" data-fragment-index="2">
+              <p class="desc">splats*</p>
+              <pre><code data-trim>
+[head, ...tail] = [1 2 3]
+# head is 1
+# tail is [2 3]
+
+[first, ...middle, last]:list = 'abcd'
+# middle is ['b', 'c']
+# list is ['a', 'b', 'c', 'd']
+              </code></pre>
+              <p class="desc"><small>*iar nu știu traducerea</small></p>
+            </div>
+          </section>
+        </section> 
+        <section>
+          <section><h2>operatori</h2></section>
+          <section>
+            <h4>egalitate</h4>
+            <div class="fragment" data-fragment-index="1">
+              <div class="fragment semi-fade-out" data-fragment-index="2">
+                <p class="desc">identitate (=== în JS)</p>
+                <pre><code data-trim>
+a == a 
+a is a
+1 isnt '1'
+                </code></pre>
+              </div>
+            </div>
+            <div class="fragment" data-fragment-index="2">
+              <div class="fragment semi-fade-out" data-fragment-index="3">
+                <p class="desc">fuzzy* (== în JS)</p>
+                <pre><code data-trim>
+'1' ~= 1 # true
+2 !~= '2' # false
+                </code></pre>
+                <p class="desc"><small>*cu convertire de tip</small></p>
+              </div>
+            </div>
+            <div class="fragment" data-fragment-index="3">
+              <p class="desc">recursivă</p>
+              <pre><code data-trim>
+[{x: 1}, 2] === [{x: 1}, 2] # true
+              </code></pre>
+            </div>
+          </section>
+          <section>
+            <h4>existență</h4>
+            <div class="fragment" data-fragment-index="1">
+              <div class="fragment semi-fade-out" data-fragment-index="2">
+                <p class="desc">verificare</p>
+                <pre><code data-trim>
+obj = {x: 1}
+obj? # true
+unknown-obj? # false
+                </code></pre>
+              </div>
+            </div>
+            <div class="fragment" data-fragment-index="2">
+              <div class="fragment semi-fade-out" data-fragment-index="3">
+                <p class="desc">gardă</p>
+                <pre><code data-trim>
+unknown-obj?.property # undefined
+unknown-obj?other-property # punctul este opțional
+                </code></pre>
+              </div>
+            </div>
+            <div class="fragment" data-fragment-index="3">
+              <p class="desc">valori implicite</p>
+              <pre><code data-trim>
+result ? \default
+a ?= 1 # a = a ? 1
+              </code></pre>
+            </div>
+          </section>
+
+          <section>
+            <h4>apartenență</h4>
+            <div class="fragment" data-fragment-index="1">
+              <div class="fragment semi-fade-out" data-fragment-index="2">
+                <p class="desc">la o listă</p>
+                <pre><code data-trim>
+1 in [1 2 3] # true
+11 not in [4 to 10] # true
+                </code></pre>
+              </div>
+            </div>
+            <div class="fragment" data-fragment-index="2">
+              <p class="desc">la un obiect</p>
+              <pre><code data-trim>
+\a of {a: 1} # true
+\b not of {a: 2} # true
+              </code></pre>
+            </div>
+          </section>          
+        </section>
+        <section>
+          <section><h2>Control</h2></section>
+          <section><h3>Decizie</h3></section>
+          <section>
+            <h4>if</h4>
+            <div class="fragment" data-fragment-index="1">
+              <div class="fragment semi-fade-out" data-fragment-index="2">
+                <pre><code data-trim>
+if true
+  do-something()
+                </code></pre>
+              </div>
+            </div>
+            <div class="fragment" data-fragment-index="2">
+              <div class="fragment semi-fade-out" data-fragment-index="3">
+                <pre><code data-trim>
+if ok then return true
+                </code></pre>
+              </div>
+            </div>
+            <div class="fragment" data-fragment-index="3">
+              <div class="fragment semi-fade-out" data-fragment-index="4">
+                <pre><code data-trim>
+return true if ok
+                </code></pre>
+              </div>
+            </div>
+            <div class="fragment" data-fragment-index="4">
+              <div class="fragment semi-fade-out" data-fragment-index="5">
+                <pre><code data-trim>
+status = if ok then \success else \failure
+                </code></pre>
+              </div>
+            </div>
+            <div class="fragment" data-fragment-index="5">
+                <pre><code data-trim>
+throw Error unless status is \success
+                </code></pre>
+            </div>
+          </section>
+          <section>
+            <h4>switch</h4>
+            <div class="fragment" data-fragment-index="1">
+              <div class="fragment semi-fade-out" data-fragment-index="2">
+                <pre><code data-trim>
+switch number
+  | 1 => '1'
+  | 2 => 'well, 2'
+  | 3 => '... 3'
+  | _ => 'can only count to 3'
+                </code></pre>
+              </div>
+            </div>
+            <div class="fragment" data-fragment-index="2">
+                <p class="desc">implicit după atribuire*</p>
+                <pre><code data-trim>
+status = # switch true
+  | is-ok() => \ok
+  | _ => \error
+                </code></pre>
+                <p class="desc"><small>*și la definiții de funcții - va urma</small></p>
+            </div>
+          </section>
+          <section><h3>bucle</h3></section>
+          <section>
+            <h4>for</h4>
+            <div class="fragment" data-fragment-index="1">
+              <div class="fragment semi-fade-out" data-fragment-index="2">
+                <p class="desc">from ... to/til</p>
+                <pre><code data-trim>
+for x from 1 til 3 then obj.store x
+                </code></pre>
+              </div>
+            </div>
+            <div class="fragment" data-fragment-index="2">
+              <div class="fragment semi-fade-out" data-fragment-index="3">
+                <p class="desc">in</p>
+                <pre><code data-trim>
+for i in [1 2] then service.process i
+for x, i in <[a b c]> then "#i:#x" # ["0:a","1:b","2:c"]
+                </code></pre>
+              </div>
+            </div>
+            <div class="fragment" data-fragment-index="3">
+                <p class="desc">of</p>
+                <pre><code data-trim>
+for key of {x: 1, y: 2} then "#key" # ["x","y"]
+for key, val of {x: 1, y: 2} then "#key:#val" # ["x:1","y:2"]
+                </code></pre>
+            </div>
+          </section>
+          <section>
+            <h4>while</h4>
+            <div class="fragment" data-fragment-index="1">
+              <div class="fragment semi-fade-out" data-fragment-index="2">
+                <p class="desc">întoarce rezultat</p>
+                <pre><code data-trim>
+i = 0
+while i < 3 then i++ # [0, 1, 2]
+                </code></pre>
+              </div>
+            </div>
+            <div class="fragment" data-fragment-index="2">
+                <p class="desc">until</p>
+                <pre><code data-trim>
+until i is 5 then i++  # [3, 4]
+                </code></pre>
+            </div>
+          </section>
+        </section>
+        <section>
+          <section><h2>funcții</h2></section>
+          <section>
+            <h4>definire (1)</h4>
+            <div class="fragment" data-fragment-index="1">
+              <div class="fragment semi-fade-out" data-fragment-index="2">
+                <p class="desc">fără argumente</p>
+                <pre><code data-trim>
+fn = ->
+  console.log "called fn"
+
+fn! # alias for fn() - prints "called fn"
+                </code></pre>
+              </div>
+            </div>
+            <div class="fragment" data-fragment-index="2">
+              <div class="fragment semi-fade-out" data-fragment-index="3">
+                <p class="desc">cu argumente</p>
+                <pre><code data-trim>
+# se poate și pe o singură linie
+fn = (arg) -> console.log "called fn with #arg"
+fn 1 # 'called fn with 1'
+                </code></pre>
+              </div>
+            </div>
+            <div class="fragment" data-fragment-index="3">
+              <div class="fragment semi-fade-out" data-fragment-index="4">
+                <p class="desc">'return' implicit</p>
+                <pre><code data-trim>
+sum = (a, b) -> a + b
+s = sum 1 2 # 3
+
+# se poate dezactiva cu !->
+update = (obj) !-> obj.update! # nu întoarce nimic
+                </code></pre>
+              </div>
+            </div>
+            <div class="fragment" data-fragment-index="4">
+                <p class="desc">argumente implicite</p>
+                <pre><code data-trim>
+inc = -> it + 1
+inc 1 # 2
+
+diff = -> &0 - &1
+diff 5 3 # 2
+                </code></pre>
+            </div>
+          </section>
+          <section>
+            <h4>definire (2)</h4>
+            <div class="fragment" data-fragment-index="1">
+              <div class="fragment semi-fade-out" data-fragment-index="2">
+                <p class="desc">argumente default</p>
+                <pre><code data-trim>
+get-item = (list, index=0) -> list[index]
+get-item <[a b c]> 1 # 'b'
+get-item <[a b c]> # 'a'
+                </code></pre>
+              </div>
+            </div>
+            <div class="fragment" data-fragment-index="2">
+              <div class="fragment semi-fade-out" data-fragment-index="3">
+                <p class="desc"><a href="#/5">destructurare</a></p>
+                <pre><code data-trim>
+first = ([x, ...xs]) -> x
+first [1 2 3] # 1
+
+move-to = ({x=0, y=0} = {}) -> set-coords x, y
+move-to x: 3 y: 4
+                </code></pre>
+              </div>
+            </div>
+            <div class="fragment" data-fragment-index="3">
+              <div class="fragment semi-fade-out" data-fragment-index="4">
+                <p class="desc"><a href="#/6/3">'switch' implicit</a></p>
+                <pre><code data-trim>
+compare = (a, b) ->
+  | a < b => -1
+  | a > b => 1
+  | _ => 0
+compare 1 2 # -1
+                </code></pre>
+              </div>
+            </div>
+            <div class="fragment" data-fragment-index="4">
+              <p class="desc">curry</p>
+              <pre><code data-trim>
+sum = (a, b) --> a + b
+add-one = sum 1
+add-one 2 # 3
+              </code></pre>
+            </div>
+          </section>          
+          <section>
+            <h4>aplicare parțială</h4>
+            <div class="fragment" data-fragment-index="1">
+              <div class="fragment semi-fade-out" data-fragment-index="2">
+                <p class="desc">operatori</p>
+                <pre><code data-trim>
+add-one = (+ 1) # -> it + 1
+(+ 2) 3 # 5
+(+) \a \b # \ab
+
+(in [1 to 5]) 3 # true
+(is 5) 4 # false
+                </code></pre>
+              </div>
+            </div>
+            <div class="fragment" data-fragment-index="2">
+                <p class="desc">atribute</p>
+                <pre><code data-trim>
+obj = {a: 1, b: 2}
+(.a) obj # 1
+(obj.) \b # 2
+
+# se poat apela și metode
+(.to-lower-case!) 'ABC' # 'abc'
+                </code></pre>
+            </div>
+          </section>
+          <section>
+            <h4><a href="http://preludels.com">prelude-ls</a></h4>
+            <p class = "fragment">librărie funcțională</p>
+            <p class = "fragment"><a href="http://preludels.com/#map">map</a>, <a href="http://preludels.com/#filter">filter</a> și multe altele</p>
+            <p class = "fragment">majoritatea funcțiilor sunt <a href="#/7/2">curried</a></p>
+            <div class="fragment">
+                <p class="desc">exemple</p>
+                <pre><code data-trim>
+{map, filter, find, unchars} = require \prelude-ls
+
+map (+ 1), [1 2] # [2 3]
+filter (> 2), [1 3 2 5] # [3 5]
+find (.length > 2), <[a bcd efg]> # \bcd
+unchars <[a b c]> # \abc
+                </code></pre>
+            </div>
+          </section>
+          <section>
+            <h4>pipe</h4>
+            <div class="fragment" data-fragment-index="1">
+              <div class="fragment semi-fade-out" data-fragment-index="2">
+                <p class="desc">înainte</p>
+                <pre><code data-trim>
+# date > funcții parțiale > rezultat
+2 |> (+ 3) # echivalent cu '(+ 3) 2'
+[1 2 3] |> map (+ 1) |> filter even # [2, 4]
+                </code></pre>
+              </div>
+            </div>
+            <div class="fragment" data-fragment-index="2">
+              <div class="fragment semi-fade-out" data-fragment-index="3">
+                <p class="desc">înapoi</p>
+                <pre><code data-trim>
+(in [1 to 5]) <| 3 # true
+map (- \x) <| <[axbc defx ghi]> # ["abc","def","ghi"]
+                </code></pre>
+              </div>
+            </div>
+            <div class="fragment" data-fragment-index="3">
+              <p class="desc">înainte, apoi înapoi</p>
+              <pre><code data-trim>
+(+ 1) <| 3 |> (* 2) # 3*2 + 1
+result = <[a bc d]>
+  |> map (.length) 
+  |> find (> 1) 
+  |> (+) 
+  <| head 
+  <| [1 2 3]
+              </code></pre>
+            </div>
+          </section>
+          <section>
+            <h4>compunere</h4>
+            <div class="fragment" data-fragment-index="1">
+              <div class="fragment semi-fade-out" data-fragment-index="2">
+                <p class="desc">sintaxă similară cu pipe...</p>
+                <pre><code data-trim>
+inc-double = (+ 1) << (* 2) # sau (* 2) >> (+ 1)
+inc-double 5 # 11
+
+map (.length) << (- \a), <[abc de a]> # [2 2 0]
+                </code></pre>
+              </div>
+            </div>
+            <div class="fragment" data-fragment-index="2">
+                <p class="desc">...sau ca în Haskell</p>
+                <pre><code data-trim>
+empty = (is 0) . (.length) # (is 0) << (.length)
+empty [1] # false
+empty [] # true
+                </code></pre>
+            </div>
+          </section>
+        </section>
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+			Reveal.initialize({
+				dependencies: [
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				],
+        // transition: '',
+        history: true,
+        controls: false,
+        transitionSpeed: 'fast'
+			});
+			Reveal.slide(6, 2, 1);
+		</script>
+		<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
+	</body>
+</html>

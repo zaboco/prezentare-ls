@@ -1,0 +1,52 @@
+livescript
+-----------
+"a language which compiles to JavaScript"
+CoffeeScript + Haskell + more...
+sitaxă simplificată
+  (almost) no parens 
+    whitespace matters
+    f 1 2; f! sum 1 2 .should.eql 3
+    point = x: 0 y: 0
+  comma optional [1 2 3]
+  string 
+    \shorthand
+    "#interpolation",
+    operators *, -, /
+  lists
+    - <[for words]>
+    - ranges: [1 to 3] [1 til 3]
+    - concatenate ++
+    - repetition/join *
+  destructure
+    [a b] = [1 2]
+    {x} = {x: 1, y: 2} # x is 1
+    splats -> [x, ...xs]:list = [1 2 3]
+  control
+    switch |
+    post if, unless
+    and, or, not, is, in, of
+functions
+  sintaxă:
+    simplified def (def) ->
+    implicit return (unless !)
+    ! fără args
+    default args
+  destructure: f = ({x, y}) -> w/defaults
+  implicit switch
+  curry
+  partial application - (+ 1) (+) (.length)
+  piping
+  composition
+prelude-ls - 
+  like haskell prelude
+  map, filter, find, and many more...
+  curried utility functions 
+    double-all = map (* 2)
+    double-all [1 to 3] # [2 4 6]
+oop - 
+  - constructor, @, ::, @@
+    Array::remove = ({at=0}={}) ->
+      @splice at, 1
+    [0 to 3].remove at: 1 # 1
+  - implicit assigment (@x, @y)
+  - extends, implements, super
