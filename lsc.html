@@ -15,9 +15,6 @@
     <!-- default, ascetic, idea, github, monokai_sublime (dark) -->
 		<link rel="stylesheet" href="lib/css/idea.css">
     <style type="text/css">
-      span.surprise {
-        font-weight:bold; color:#AC3806;
-      }
       h2 {
         margin-bottom: 40px;
       }
@@ -245,13 +242,13 @@ list = [x * 2 for x from 1 to 3 when x % 2 is 1] # [2 6]
             </div>
           </section>
         </section> 
-        <section>
+        <section id="#5">
           <section><h2>operatori</h2></section>
           <section>
             <h4>egalitate</h4>
             <div class="fragment" data-fragment-index="1">
               <div class="fragment semi-fade-out" data-fragment-index="2">
-                <p class="desc">identitate (=== în JS)</p>
+                <p class="desc">identitate (<code>===</code> în JS)</p>
                 <pre><code data-trim>
 a == a 
 a is a
@@ -551,7 +548,7 @@ obj = {a: 1, b: 2}
 (.a) obj # 1
 (obj.) \b # 2
 
-# se poat apela și metode
+# se pot apela și metode
 (.to-lower-case!) 'ABC' # 'abc'
                 </code></pre>
             </div>
@@ -646,7 +643,7 @@ empty [] # true
         controls: false,
         transitionSpeed: 'fast'
 			});
-			Reveal.slide(6, 2, 1);
+			Reveal.slide(5, 1, 1);
 		</script>
 		<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
 	</body>
