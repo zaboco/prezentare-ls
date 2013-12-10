@@ -50,3 +50,116 @@ oop -
     [0 to 3].remove at: 1 # 1
   - implicit assigment (@x, @y)
   - extends, implements, super
+
+
+  Clase    
+    constructor
+
+class Number
+  (value=0) -> this.value = value
+    @ în loc de `this`
+class Number
+  (value=0) -> @value = value
+    atribuire implicită
+class Number
+  (@value=0) ->
+
+
+    metode
+
+class Number
+  (@value=0) ->
+  add: (other) -> @value + other.value
+    
+    prototype
+Number.prototype.inc = -> @value++
+    sau ::
+Number::inc = -> @value++
+
+
+    utilizare
+
+a = new Number 2
+a.inc!
+a.value # 3
+
+
+    atribute statice
+
+class SomeClass
+  @instances = 0
+  @count = -> @instances
+  -> @@instances++
+  destroy: -> @@instances--
+
+obj = new SomeClass
+SomeClass.count! # 1
+obj@@instances # 1
+
+
+    moștenire
+
+class Parent
+  -> console.log "created a #{@constructor.name}"
+  to-string: -> \parent
+
+class Child extends Parent
+  to-string: -> 
+    "#{super!}->child"
+
+c = new Child
+"#c" # "parent->child"
+
+
+    mixin
+
+Printable = 
+  print: -> console.log "#@"
+
+class Number implements Printable
+  (@value=0) ->  
+  to-string: -> "Number #{@value}"
+
+n = new Number
+n.print! # afișează "Number 0"
+    
+
+  Utilizare
+    Instalare
+
+necesită `node.js`
+$ npm install -g LiveScript
+
+    Rulare
+
+# file.ls
+console.log 'running a livescript file'
+
+$ lsc file.ls
+running a livescript file
+
+    Compilare
+$ lsc -c file.ls
+$ cat file.js
+console.log('running a livescript file');
+
+    Opțiuni
+$ lsc -h
+
+    Avansat
+grunt.js cu grunt-livescript
+
+
+  Resurse
+    livescript.net
+    preludels.com
+
+    setup pentru un modul node.js cu livescript
+    https://github.com/zaboco/livescript-stub
+
+    această prezentare
+    https://github.com/zaboco/prezentare-ls
+
+  Eu
+    twitter, github, gmail
+    zaboco
