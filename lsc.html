@@ -1,19 +1,19 @@
 <!doctype html>
 <html lang="en">
 
-	<head>
-		<meta charset="utf-8">
+  <head>
+    <meta charset="utf-8">
 
-		<title>Prezentare LiveScript</title>
+    <title>Prezentare LiveScript</title>
 
     <link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/print/pdf.css" type="text/css" media="print">
-		<link rel="stylesheet" href="css/theme/beige.css" id="theme">
+    <link rel="stylesheet" href="css/print/pdf.css" type="text/css" media="print">
+    <link rel="stylesheet" href="css/theme/beige.css" id="theme">
 
-		<link href='css/util/oswald-font.css' rel='stylesheet' type='text/css'>
+    <link href='css/util/oswald-font.css' rel='stylesheet' type='text/css'>
 
     <!-- default, ascetic, idea, github, monokai_sublime (dark) -->
-		<link rel="stylesheet" href="lib/css/idea.css">
+    <link rel="stylesheet" href="lib/css/idea.css">
     <style type="text/css">
       h2 {
         margin-bottom: 40px;
@@ -26,27 +26,27 @@
         opacity: 0.3;
       }
     </style>
-	</head>
+  </head>
 
-	<body>
-		<div class="reveal">
-			<div class="slides">
-				<section>
-					<h1>LiveScript</h1>
-					<p><q>"un limbaj care compilează în JavaScript"</q></p>
-					<a href="http://livescript.net">livescript.net</a>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <h1>LiveScript</h1>
+          <p><q>"un limbaj care compilează în JavaScript"</q></p>
+          <a href="http://livescript.net">livescript.net</a>
           <div>
             <img src="images/webicon-github.png">
             <img src="images/webicon-twitter.png">
           </div>
-				</section>
-				<section>
-					<h2>inspirație</h2>
-					<img style="margin-right: 20px" src="https://drupal.org/files/images/coffeescript.png"/>
-					<img src="http://bilfp.wikidot.com/local--files/haskell/haskell-logo.png"/>
-					<p class="fragment"><em>...și ceva în plus</em></p>
-				</section>
-				<section>
+        </section>
+        <section>
+          <h2>inspirație</h2>
+          <img style="margin-right: 20px" src="https://drupal.org/files/images/coffeescript.png"/>
+          <img src="http://bilfp.wikidot.com/local--files/haskell/haskell-logo.png"/>
+          <p class="fragment"><em>...și ceva în plus</em></p>
+        </section>
+        <section>
           <section>
             <h2>sintaxă simplificată</h2>
           </section>
@@ -67,7 +67,7 @@ if x > min 1, 3
   s = sum 1, 2
   obj = x: 1, y: 2
   list = [1, 2, 3]
-# *indentarea contează  
+# *indentarea contează
             </code></pre>
           </section>
           <section data-transition="none">
@@ -77,7 +77,7 @@ if x > min 1 3
   s = sum 1 2
   obj = x: 1 y: 2
   list = [1 2 3]
-# 
+#
             </code></pre>
           </section>
           <section><h2>dar...</h2></section>
@@ -91,7 +91,7 @@ move-to {
 }
             </code></pre>
           </section>
-				</section>
+        </section>
         <section>
           <section><h2>stringuri</h2></section>
           <section>
@@ -248,7 +248,7 @@ list = [x * 2 for x from 1 to 3 when x % 2 is 1] # [2 6]
               <p class="desc"><small>*iar nu știu traducerea</small></p>
             </div>
           </section>
-        </section> 
+        </section>
         <section>
           <section><h2>operatori</h2></section>
           <section>
@@ -257,7 +257,7 @@ list = [x * 2 for x from 1 to 3 when x % 2 is 1] # [2 6]
               <div class="fragment semi-fade-out" data-fragment-index="2">
                 <p class="desc">identitate (<code>===</code> în JS)</p>
                 <pre><code data-trim>
-a == a 
+a == a
 a is a
 1 isnt '1'
                 </code></pre>
@@ -328,7 +328,7 @@ a ?= 1 # a = a ? 1
 \b not of {a: 2} # true
               </code></pre>
             </div>
-          </section>          
+          </section>
         </section>
         <section>
           <section><h2>Control</h2></section>
@@ -733,24 +733,24 @@ empty = (is 0) . (.length) # (is 0) << (.length)
             </div>
           </section>
         </section>
-			</div>
-		</div>
+      </div>
+    </div>
 
-		<script src="lib/js/head.min.js"></script>
-		<script src="js/reveal.min.js"></script>
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
 
-		<script>
-			Reveal.initialize({
-				dependencies: [
-					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
-				],
+    <script>
+      Reveal.initialize({
+        dependencies: [
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+        ],
         // transition: '',
         history: true,
         controls: false,
         transitionSpeed: 'fast'
-			});
-			// Reveal.slide(7, 22, 1);
-		</script>
-		<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
-	</body>
+      });
+      // Reveal.slide(7, 22, 1);
+    </script>
+    <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
+  </body>
 </html>
