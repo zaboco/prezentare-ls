@@ -3,12 +3,12 @@ livescript
 "a language which compiles to JavaScript"
 CoffeeScript + Haskell + more...
 sitaxă simplificată
-  (almost) no parens 
+  (almost) no parens
     whitespace matters
     f 1 2; f! sum 1 2 .should.eql 3
     point = x: 0 y: 0
   comma optional [1 2 3]
-  string 
+  string
     \shorthand
     "#interpolation",
     operators *, -, /
@@ -37,13 +37,13 @@ functions
   partial application - (+ 1) (+) (.length)
   piping
   composition
-prelude-ls - 
+prelude-ls -
   like haskell prelude
   map, filter, find, and many more...
-  curried utility functions 
+  curried utility functions
     double-all = map (* 2)
     double-all [1 to 3] # [2 4 6]
-oop - 
+oop -
   - constructor, @, ::, @@
     Array::remove = ({at=0}={}) ->
       @splice at, 1
@@ -52,7 +52,7 @@ oop -
   - extends, implements, super
 
 
-  Clase    
+  Clase
     constructor
 
 class Number
@@ -70,7 +70,7 @@ class Number
 class Number
   (@value=0) ->
   add: (other) -> @value + other.value
-    
+
     prototype
 Number.prototype.inc = -> @value++
     sau ::
@@ -90,7 +90,6 @@ class SomeClass
   @instances = 0
   @count = -> @instances
   -> @@instances++
-  destroy: -> @@instances--
 
 obj = new SomeClass
 SomeClass.count! # 1
@@ -104,7 +103,7 @@ class Parent
   to-string: -> \parent
 
 class Child extends Parent
-  to-string: -> 
+  to-string: ->
     "#{super!}->child"
 
 c = new Child
@@ -113,16 +112,16 @@ c = new Child
 
     mixin
 
-Printable = 
+Printable =
   print: -> console.log "#@"
 
 class Number implements Printable
-  (@value=0) ->  
+  (@value=0) ->
   to-string: -> "Number #{@value}"
 
 n = new Number
 n.print! # afișează "Number 0"
-    
+
 
   Utilizare
     Instalare

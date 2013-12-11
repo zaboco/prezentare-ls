@@ -35,10 +35,6 @@
           <h1>LiveScript</h1>
           <p><q>"un limbaj care compilează în JavaScript"</q></p>
           <a href="http://livescript.net">livescript.net</a>
-          <div>
-            <img src="images/webicon-github.png">
-            <img src="images/webicon-twitter.png">
-          </div>
         </section>
         <section>
           <h2>inspirație</h2>
@@ -733,6 +729,180 @@ empty = (is 0) . (.length) # (is 0) << (.length)
             </div>
           </section>
         </section>
+        <section>
+          <section>
+            <h2>Clase</h2>
+          </section>
+          <section data-transition="none">
+            <h4>Constructor</h4>
+            <pre><code data-trim>
+class Number
+  (value=0) -> this.value = value
+            </code></pre>
+          </section>
+          <section data-transition="none">
+            <h4>Constructor</h4>
+            <pre><code data-trim>
+class Number
+  (value=0) -> @value = value
+            </code></pre>
+          </section>
+          <section data-transition="none">
+            <h4>Constructor</h4>
+            <pre><code data-trim>
+class Number
+  (@value=0) ->
+            </code></pre>
+          </section>
+          <section>
+            <h4>Metode</h4>
+            <pre><code data-trim>
+class Number
+  (@value=0) ->
+  add: (other) -> @value + other.value
+            </code></pre>
+          </section>
+          <section data-transition="none">
+            <h4>Prototip</h4>
+            <pre><code data-trim>
+Number.prototype.inc = -> @value++
+            </code></pre>
+          </section>
+          <section data-transition="none">
+            <h4>Prototip</h4>
+            <pre><code data-trim>
+Number::inc = -> @value++
+            </code></pre>
+          </section>
+          <section>
+            <h4>Utilizare</h4>
+            <pre><code data-trim>
+a = new Number 2
+a.inc!
+a.value # 3
+            </code></pre>
+          </section>
+          <section>
+            <h4>Atribute Statice</h4>
+            <div class="fragment semi-fade-out" data-fragment-index="1">
+              <pre><code data-trim>
+class SomeClass
+  @instances = 0
+  @count = -> @instances
+  -> @@instances++
+              </code></pre>
+            </div>
+            <div class="fragment" data-fragment-index="1">
+                <pre><code data-trim>
+obj = new SomeClass
+SomeClass.count! # 1
+obj@@instances # 1
+                </code></pre>
+            </div>
+          </section>
+          <section>
+            <h4>Moştenire</h4>
+            <div class="fragment semi-fade-out" data-fragment-index="1">
+              <pre><code data-trim>
+class Parent
+  -> console.log "created a #{@constructor.name}"
+  to-string: -> \parent
+              </code></pre>
+            </div>
+            <div class="fragment" data-fragment-index="1">
+              <div class="fragment semi-fade-out" data-fragment-index="2">
+                <pre><code data-trim>
+class Child extends Parent
+  to-string: ->
+    "#{super!}->child"
+                </code></pre>
+              </div>
+            </div>
+            <div class="fragment" data-fragment-index="2">
+                <pre><code data-trim>
+new Parent # afişează "created a Parent"
+c = new Child # afişează "created a Child"
+"#c" # "parent->child"
+                </code></pre>
+            </div>
+          </section>
+          <section>
+            <h4>Mixin</h4>
+            <div class="fragment semi-fade-out" data-fragment-index="1">
+              <pre><code data-trim>
+Printable =
+  print: -> console.log "#@"
+              </code></pre>
+            </div>
+            <div class="fragment" data-fragment-index="1">
+              <div class="fragment semi-fade-out" data-fragment-index="2">
+                <pre><code data-trim>
+class Number implements Printable
+  (@value=0) ->
+  to-string: -> "Number #{@value}"
+                </code></pre>
+              </div>
+            </div>
+            <div class="fragment" data-fragment-index="2">
+                <pre><code data-trim>
+n = new Number
+n.print! # afișează "Number 0"
+                </code></pre>
+            </div>
+          </section>
+        </section>
+        <section>
+          <section><h2>Utilizare</h2></section>
+          <section>
+            <h4>Instalare*</h4>
+            <pre><code data-trim>
+$ [sudo ]npm install -g LiveScript
+            </code></pre>
+            <p class="desc"><small>*necesită <a href="http://nodejs.org/">node.js</a> instalat</small></p>
+          </section>
+          <section>
+            <h4>Rulare</h4>
+            <pre><code data-trim>
+$ echo "console.log \output" > file.ls
+$ lsc file.ls
+  output
+            </code></pre>
+          </section>
+          <section>
+            <h4>Compilare</h4>
+            <pre><code data-trim>
+$ lsc -c file.ls
+$ cat file.js
+console.log('output');
+            </code></pre>
+          </section>
+          <section>
+            <h4>Opţiuni</h4>
+            <pre><code data-trim>
+$ lsc -h
+            </code></pre>
+          </section>
+          <section>
+            <h4>Avansat</h4>
+            <p><a href="http://gruntjs.com/">grunt.js</a> cu <a href="https://github.com/DavidSouther/grunt-livescript">grunt-livescript</a></p>
+          </section>
+        </section>
+        <section>
+          <h2>Resurse</h2>
+          <p><a href="http://livescript.net">livescript.net</a></p>
+          <p><a href="http://preludels.com">preludels.com</a></p>
+          <p><br /></p>
+          <p><a href="https://github.com/zaboco/prezentare-ls">această prezentare*</a></p>
+          <small>*făcută cu <a href="http://lab.hakim.se/reveal-js/">reveal.js</a></small>
+        </section>
+        <section>
+          <h4>Bogdan Zaharia</h4>
+          <p>@zaboco</p>
+          <div>
+            <a href="https://github.com/zaboco"><img src="images/webicon-github.png"></a>
+            <a href="https://twitter.com/zaboco"><img src="images/webicon-twitter.png"></a>
+          </div>
+        </section>
       </div>
     </div>
 
@@ -744,12 +914,11 @@ empty = (is 0) . (.length) # (is 0) << (.length)
         dependencies: [
           { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
         ],
-        // transition: '',
         history: true,
         controls: false,
         transitionSpeed: 'fast'
       });
-      // Reveal.slide(7, 22, 1);
+      Reveal.slide(11, 0);
     </script>
     <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
   </body>
